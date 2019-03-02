@@ -13,7 +13,6 @@ import java.util.List;
 public class AnagramApplication {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Finding anagrams for word " + args[0]);
 		long startTime = System.nanoTime();
 		String path = args[0];
 		char[] word = args[1].toCharArray();
