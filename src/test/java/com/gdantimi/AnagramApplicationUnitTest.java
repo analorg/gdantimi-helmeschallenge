@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MainUnitTest {
+public class AnagramApplicationUnitTest {
 
 	private static final String DICTIONARY_FILE = "lemmad.txt";
 	private static final String WORD = "palace lap";
@@ -19,7 +19,7 @@ public class MainUnitTest {
 	@Test
 	public void main_shouldProcessWithoutErrors() throws IOException {
 		String path = getClass().getClassLoader().getResource(DICTIONARY_FILE).getPath();
-		Main.main(new String[] { WORD, path });
+		AnagramApplication.main(new String[] { path, WORD });
 	}
 
 	@Test
@@ -28,14 +28,14 @@ public class MainUnitTest {
 				"palace pal", "palace lap", "palace alp", "apace pall", "paella cap",
 				"appeal lac", "appall ace", "appal lace", "papal lace"
 		);
-		List<String> wordInDictionary = Main.findWordInDictionary(WORD.toCharArray(), dictionary);
+		List<String> wordInDictionary = AnagramApplication.findWordInDictionary(WORD.toCharArray(), dictionary);
 		assertEquals(dictionary.size(), wordInDictionary.size());
 	}
 
 	@Test
 	public void getNextIndex_shouldFindNextIndexToSwap_whenNextIndexStillInRange() {
 		char[] lastPermutation = new char[] { 'a', 'b', 'c', 'c' };
-		int nextIndex = Main.getNextIndex(0, lastPermutation);
+		int nextIndex = AnagramApplication.getNextIndex(0, lastPermutation);
 
 		assertEquals(1, nextIndex);
 	}
@@ -43,7 +43,7 @@ public class MainUnitTest {
 	@Test
 	public void getNextIndex_shouldStartOver_whenNextIndexOutOfRange() {
 		char[] lastPermutation = new char[] { 'a', 'b', 'c', 'c' };
-		int nextIndex = Main.getNextIndex(2, lastPermutation);
+		int nextIndex = AnagramApplication.getNextIndex(2, lastPermutation);
 
 		assertEquals(0, nextIndex);
 	}

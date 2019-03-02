@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class AnagramApplication {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Finding anagrams for word " + args[0]);
 		long startTime = System.nanoTime();
-		char[] word = args[0].toCharArray();
-		String path = args[1];
+		String path = args[0];
+		char[] word = args[1].toCharArray();
 
 		List<String> dictionary = loadDictionary(path);
 
