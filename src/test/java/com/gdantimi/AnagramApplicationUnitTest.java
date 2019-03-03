@@ -3,8 +3,6 @@ package com.gdantimi;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +21,11 @@ public class AnagramApplicationUnitTest {
 	}
 
 	@Test
-	public void findWordInDictionary_shouldAllFindAnagrams() {
-		List<String> dictionary = Arrays.asList(
-				"palace pal", "palace lap", "palace alp", "apace pall", "paella cap",
-				"appeal lac", "appall ace", "appal lace", "papal lace"
-		);
-		List<String> wordInDictionary = AnagramApplication.findWordInDictionary(WORD.toCharArray(), dictionary);
-		assertEquals(dictionary.size(), wordInDictionary.size());
+	public void findWordInDictionary_shouldAllFindAnagrams() throws IOException {
+		String path = this.getClass().getClassLoader().getResource("testlemmad.txt").getPath();
+		String wordInDictionary = AnagramApplication.findWordInDictionary(WORD.toCharArray(), path);
+		String expectedOutput = ",palace pal,palace lap,palace alp,apace pall,paella cap,appeal lac,appall ace,appal lace,papal lace";
+		assertEquals(expectedOutput, wordInDictionary);
 	}
 
 	@Test
